@@ -7,14 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="shipmentsws-alumnes" />
-        <module name="shipments-fxml-alumnes" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="shipmentsws-alumnes" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="shipments-fxml-alumnes" options="-parameters" />
+      <module name="shipments-fxml-alumnes" options="-parameters -proc:none" />
       <module name="shipmentsws-alumnes" options="-parameters" />
     </option>
   </component>

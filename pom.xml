@@ -125,15 +125,42 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.1.0</version>
 		</dependency>-->
+		<dependency>
+			<groupId>cat.institutmarianao</groupId>
+			<artifactId>shipmentsws-alumnes</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
     </dependencies>
     <build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>Shipments-HighGround/src/main/java</directory>
+			</resource>
+			<resource>
+				<directory>Shipments-HighGround/target/classes/</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>17</source>
+					<target>17</target>
+					<release>17</release>
+					<compilerArgument>-proc:none</compilerArgument>
+					<includes>
+						<include>**/*.java</include>
+						<include>**/*.class</include>
+					</includes>
+				</configuration>
                 <!--<version>3.8.0</version>
                 <configuration>
-                    <release>13</release>
                 </configuration>-->
             </plugin>
             <plugin>
@@ -157,6 +184,20 @@
                     </execution>
                 </executions>
             </plugin>
+			<plugin>
+				<!-- Build an executable JAR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>ins.marianao.shipments.fxml.ShipmentsApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
         </plugins>
     </build>
 </project>
