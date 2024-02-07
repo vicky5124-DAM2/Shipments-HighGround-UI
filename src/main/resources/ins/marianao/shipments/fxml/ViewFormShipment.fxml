@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="540.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="60.0" layoutY="20.0" text="HighGround" />
+      <Label layoutX="60.0" layoutY="60.0" text="%fxml.text.viewFormShipment.title" />
+      <TextField fx:id="senderName" layoutX="325.0" layoutY="80.0" prefHeight="24.0" prefWidth="500.0" promptText="%fxml.text.viewFormShipment.sender_name" />
+      <TextField fx:id="senderAddress" layoutX="325.0" layoutY="130.0" prefHeight="24.0" prefWidth="500.0" promptText="%fxml.text.viewFormShipment.sender_address" />
+      <TextField fx:id="addresseeName" layoutX="325.0" layoutY="180.0" prefHeight="24.0" prefWidth="500.0" promptText="%fxml.text.viewFormShipment.addressee_name" />
+      <TextField fx:id="addresseeAddress" layoutX="325.0" layoutY="230.0" prefHeight="24.0" prefWidth="500.0" promptText="%fxml.text.viewFormShipment.addressee_address" />
+      <TextField fx:id="shipmentDescription" layoutX="325.0" layoutY="280.0" prefHeight="24.0" prefWidth="500.0" promptText="%fxml.text.viewFormShipment.shipment_description" />
+      <TextField fx:id="weight" layoutX="325.0" layoutY="330.0" prefHeight="24.0" prefWidth="500.0" promptText="%fxml.text.viewFormShipment.weight_kg" />
+      <Label fx:id="dimensionsText" layoutX="325.0" layoutY="380.0" prefHeight="24.0" prefWidth="250.0" text="%fxml.text.viewFormShipment.dimensions" />
+      <HBox fx:id="dimensions" layoutX="325.0" layoutY="430.0" prefHeight="24.0" prefWidth="250.0">
+         <children>
+            <TextField fx:id="width" layoutX="325.0" prefHeight="24.0" prefWidth="120.0" promptText="%fxml.text.viewFormShipment.width"/>
+            <TextField prefHeight="24.0" layoutX="525.0" prefWidth="120.0" promptText="%fxml.text.viewFormShipment.height"/>
+            <TextField prefHeight="24.0" layoutX="725.0" prefWidth="120.0" promptText="%fxml.text.viewFormShipment.depth"/>
+         </children></HBox>
+      <TextField fx:id="priority" layoutX="325.0" layoutY="480.0" prefHeight="24.0" prefWidth="500.0" promptText="%fxml.text.viewFormShipment.priority" />
+      <Button fx:id="bCreate" layoutX="325.0" layoutY="530.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="500.0" text="%fxml.text.viewFormShipment.create" />
+   </children>
+</AnchorPane>

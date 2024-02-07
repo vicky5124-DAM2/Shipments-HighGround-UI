@@ -156,7 +156,14 @@ public class ControllerMenu implements Initializable {
 	@FXML
 	public void receptionMenuClick(ActionEvent event) {
 		// TODO open shipment's form
-		return;
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewFormShipment.fxml"), ResourceManager.getInstance().getTranslationBundle());
+			AnchorPane vista = (AnchorPane) loader.load();
+
+			this.loadView(vista);
+		}catch (Exception e){
+			ControllerMenu.showError(ResourceManager.getInstance().getText("error.menu.view.opening"), e.getMessage(), ExceptionUtils.getStackTrace(e));
+		}
 	}
 
 	/**
