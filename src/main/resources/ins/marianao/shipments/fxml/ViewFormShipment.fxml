@@ -10,9 +10,8 @@
 
 <AnchorPane prefHeight="540.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="60.0" layoutY="3.0" text="HighGround" />
-      <Label layoutX="60.0" layoutY="40.0" text="%fxml.text.viewFormShipment.title" />
-      <HBox layoutX="325.0" layoutY="35.0" prefHeight="24.0" prefWidth="500.0">
+      <Label layoutX="55.0" layoutY="14.0" styleClass="title" text="%fxml.text.viewFormShipment.title" />
+      <HBox layoutX="325.0" layoutY="35.0" prefHeight="24.0" prefWidth="500.0" styleClass="input-group">
          <children>
             <Label prefHeight="30.0" prefWidth="100.0" text="%fxml.text.viewFormShipment.category" />
             <ComboBox fx:id="category" layoutY="100.0" prefHeight="24.0" prefWidth="400.0" />
