@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControllerFormShipment implements Initializable {
-
     @FXML
     private ComboBox<?> category;
     @FXML
