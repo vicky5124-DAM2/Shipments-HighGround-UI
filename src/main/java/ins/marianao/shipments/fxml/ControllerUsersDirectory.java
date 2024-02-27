@@ -8,6 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import ins.marianao.shipments.fxml.services.ServiceUpdateUser;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import cat.institutmarianao.shipmentsws.model.LogisticsManager;
@@ -53,6 +54,7 @@ public class ControllerUsersDirectory extends AbstractControllerPDF {
 	@FXML private TableColumn<User, String> colFullname;
 	@FXML private TableColumn<User, Integer> colExtension;
 	@FXML private TableColumn<User, String> colLocalion;
+	@FXML private TableColumn<User, Boolean> colUpdate;
 	@FXML private TableColumn<User, Boolean> colDelete;
 
 	/**
@@ -212,6 +214,38 @@ public class ControllerUsersDirectory extends AbstractControllerPDF {
 				}
 			});
 		}
+
+		if (!(user instanceof LogisticsManager)) {
+			this.colUpdate.setVisible(false);
+			this.colUpdate.setMinWidth(0);
+			this.colUpdate.setMaxWidth(0);
+		} else {
+			this.colUpdate.setMinWidth(50);
+			this.colUpdate.setMaxWidth(70);
+			// define a simple boolean cell value for the action column so that the column will only be shown for non-empty rows.
+			this.colUpdate.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<User, Boolean>, ObservableValue<Boolean>>() {
+				@Override
+				public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<User, Boolean> cell) {
+					return new SimpleBooleanProperty(false);
+				}
+			});
+
+			this.colUpdate.setCellFactory(new ColumnButton<User, Boolean>(ResourceManager.getInstance().getText("fxml.text.viewUsers.col.update"),
+					new Image(getClass().getResourceAsStream("resources/userUpdate.png")) ) {
+				@Override
+				public void buttonAction(User usuari) {
+					try {
+						boolean result = ControllerMenu.showConfirm(ResourceManager.getInstance().getText("fxml.text.viewUsers.update.title"),
+								ResourceManager.getInstance().getText("fxml.text.viewUsers.update.text"));
+						if (result) {
+							deleteUsuari(usuari);
+						}
+					} catch (Exception e) {
+						ControllerMenu.showError(ResourceManager.getInstance().getText("error.viewUsers.update"), e.getMessage(), ExceptionUtils.getStackTrace(e));
+					}
+				}
+			});
+		}
 	}
 
 	private void deleteUsuari(User usuari) throws Exception {
@@ -237,6 +271,10 @@ public class ControllerUsersDirectory extends AbstractControllerPDF {
 		});
 		
 		deleteUser.start();
+	}
+
+	private void updateUsuari() throws Exception{
+
 	}
 	
 	private void saveUsuari(User user, boolean insert) throws Exception {

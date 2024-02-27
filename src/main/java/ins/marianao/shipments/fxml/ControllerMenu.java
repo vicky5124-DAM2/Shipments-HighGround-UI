@@ -11,13 +11,14 @@ import java.util.ResourceBundle;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import ins.marianao.shipments.fxml.services.ServiceLogin;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import cat.institutmarianao.shipmentsws.model.LogisticsManager;
 import cat.institutmarianao.shipmentsws.model.Receptionist;
 import cat.institutmarianao.shipmentsws.model.User;
 import ins.marianao.shipments.fxml.manager.ResourceManager;
-import ins.marianao.shipments.fxml.services.ServiceLogin;
+import ins.marianao.shipments.fxml.services.ServiceUpdateUser;
 import ins.marianao.shipments.fxml.services.ServiceQueryUsers;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
