@@ -3,29 +3,30 @@ package ins.marianao.shipments.fxml;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import cat.institutmarianao.shipmentsws.model.Shipment;
 
 public class ControllerShipmentsDirectory {
     @FXML
-    private TableView<Shipments> shipmentsTable;
+    private TableView<Shipment> shipmentsTable;
     @FXML
-    private TableColumn<Shipments, String> colAddresseeName;
+    private TableColumn<Shipment, String> colAddresseeName;
 
     @FXML
-    private TableColumn<Shipments, String> colAssignedCourier;
+    private TableColumn<Shipment, String> colAssignedCourier;
 
     @FXML
-    private TableColumn<Shipments, Integer> colCategory;
+    private TableColumn<Shipment, Integer> colCategory;
 
     @FXML
-    private TableColumn<Shipments, Boolean> colDelivered;
+    private TableColumn<Shipment, Boolean> colDelivered;
 
     @FXML
-    private TableColumn<Shipments, Integer> colPriority;
+    private TableColumn<Shipment, Integer> colPriority;
 
     @FXML
-    private TableColumn<Shipments, String> colRecipientAddress;
+    private TableColumn<Shipment, String> colRecipientAddress;
 
     @FXML
-    private TableColumn<Shipments, Integer> colTrackingId;
+    private TableColumn<Shipment, Integer> colTrackingId;
 
 }
