@@ -55,7 +55,7 @@
 						<TableColumn fx:id="colFullname" maxWidth="600.0" minWidth="100.0" prefWidth="250.0" styleClass="col-left" text="%fxml.text.viewUsers.col.fullname" />
 						<TableColumn fx:id="colExtension" maxWidth="150.0" minWidth="100.0" prefWidth="100.0" styleClass="col-center" text="%fxml.text.viewUsers.col.extension" />
                   <TableColumn fx:id="colLocalion" editable="false" maxWidth="250.0" minWidth="150.0" prefWidth="150.0" styleClass="col-center" text="%fxml.text.viewUsers.col.location" />
-                  <TableColumn fx:id="colUpdate" maxWidth="-1.0" minWidth="50.0" prefWidth="-1.0" styleClass="col-center" text="Update" />
+                  <TableColumn fx:id="colUpdate" maxWidth="-1.0" minWidth="50.0" prefWidth="-1.0" styleClass="col-center" />
                   <TableColumn fx:id="colDelete" maxWidth="-1.0" minWidth="50.0" prefWidth="-1.0" styleClass="col-center" />
 					</columns>
                <columnResizePolicy>

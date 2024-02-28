@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ins.marianao.shipments.fxml.services.ServiceUpdateUser;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import cat.institutmarianao.shipmentsws.model.LogisticsManager;
@@ -235,10 +238,16 @@ public class ControllerUsersDirectory extends AbstractControllerPDF {
 				@Override
 				public void buttonAction(User usuari) {
 					try {
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewUpdateUser.fxml"), ResourceManager.getInstance().getTranslationBundle());
+						BorderPane vista = (BorderPane)loader.load();
+						ControllerFormUser controllerFormUsuari = loader.getController();
+
+						loadView(vista);
+
 						boolean result = ControllerMenu.showConfirm(ResourceManager.getInstance().getText("fxml.text.viewUsers.update.title"),
 								ResourceManager.getInstance().getText("fxml.text.viewUsers.update.text"));
 						if (result) {
-							deleteUsuari(usuari);
+							updateUsuari();
 						}
 					} catch (Exception e) {
 						ControllerMenu.showError(ResourceManager.getInstance().getText("error.viewUsers.update"), e.getMessage(), ExceptionUtils.getStackTrace(e));
@@ -247,6 +256,23 @@ public class ControllerUsersDirectory extends AbstractControllerPDF {
 			});
 		}
 	}
+
+	public void loadView(Pane vista) {
+		if (vista == null) return;
+
+		this.viewUsersDirectory.getChildren().clear();
+
+		//appRootPane.setPrefHeight(appRootPane.getHeight() - 80.0);
+
+		this.viewUsersDirectory.getChildren().add(vista);
+
+		AnchorPane.setTopAnchor(vista,0.0);
+		AnchorPane.setBottomAnchor(vista,0.0);
+		AnchorPane.setLeftAnchor(vista, 0.0);
+		AnchorPane.setRightAnchor(vista, 0.0);
+		//this.portviewPane.setVisible(true);
+	}
+
 
 	private void deleteUsuari(User usuari) throws Exception {
 		final ServiceDeleteUser deleteUser = new ServiceDeleteUser(usuari);
