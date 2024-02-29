@@ -36,7 +36,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label styleClass="title" text="%fxml.text.formUser.title" GridPane.columnIndex="1" />
+                  <Label styleClass="title" text="%fxml.text.updateUserForm.title" GridPane.columnIndex="1" />
                   <HBox spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <ComboBox fx:id="cmbRole" disable="true" minWidth="200.0" HBox.hgrow="ALWAYS" />
@@ -134,7 +134,7 @@
                         </HBox>
                      </children>
                   </StackPane>
-      						<Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveProfileClick" styleClass="button-fullwidth" text="%fxml.text.formUser.submit" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      						<Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveProfileClick" styleClass="button-fullwidth" text="%fxml.text.updateUserForm.submit" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
 				<HBox spacing="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">

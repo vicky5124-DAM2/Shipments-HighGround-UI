@@ -238,15 +238,16 @@ public class ControllerUsersDirectory extends AbstractControllerPDF {
 				@Override
 				public void buttonAction(User usuari) {
 					try {
-						FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewUpdateUser.fxml"), ResourceManager.getInstance().getTranslationBundle());
-						BorderPane vista = (BorderPane)loader.load();
-						ControllerFormUser controllerFormUsuari = loader.getController();
-
-						loadView(vista);
 
 						boolean result = ControllerMenu.showConfirm(ResourceManager.getInstance().getText("fxml.text.viewUsers.update.title"),
 								ResourceManager.getInstance().getText("fxml.text.viewUsers.update.text"));
 						if (result) {
+
+							FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewUpdateUser.fxml"), ResourceManager.getInstance().getTranslationBundle());
+							BorderPane vista = (BorderPane)loader.load();
+							ControllerFormUser controllerFormUsuari = loader.getController();
+							loadView(vista);
+
 							updateUsuari();
 						}
 					} catch (Exception e) {

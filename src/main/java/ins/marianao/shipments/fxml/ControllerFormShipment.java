@@ -1,4 +1,4 @@
-package ins.marianao.shipments.fxml.services;
+package ins.marianao.shipments.fxml;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
