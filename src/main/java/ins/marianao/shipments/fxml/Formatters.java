@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import cat.institutmarianao.shipmentsws.model.Company;
+import cat.institutmarianao.shipmentsws.model.Office;
 import org.apache.commons.lang3.StringUtils;
 
 import cat.institutmarianao.shipmentsws.model.User;
@@ -36,7 +38,65 @@ public class Formatters {
 		};
 		return converter;
 	}
-	
+
+	public static StringConverter<Office> getOfficeConverter(List<Office> offices) {
+
+		StringConverter<Office> converter = new StringConverter<Office>()	{
+
+			private Office findOffice(String name) {
+				if (name.isBlank()) return null;
+
+				for (Office office: offices) {
+					if (name.equals(office.getName())) return office;
+				}
+
+				return null;
+			}
+
+			@Override
+			public Office fromString(String name)
+			{
+				return findOffice(name);
+			}
+
+			@Override
+			public String toString(Office office)
+			{
+				if (office == null || ResourceManager.getInstance().getText("fxml.text.view.all").equals(office.getName())) return ResourceManager.getInstance().getText("fxml.text.view.all");
+				return office.getName();
+			}
+		};
+		return converter;
+	}
+	public static StringConverter<Company> getCompanyConverter(List<Company> companies) {
+
+		StringConverter<Company> converter = new StringConverter<Company>()	{
+
+			private Company findCompany(String name) {
+				if (name.isBlank()) return null;
+
+				for (Company company: companies) {
+					if (name.equals(company.getName())) return company;
+				}
+
+				return null;
+			}
+
+			@Override
+			public Company fromString(String name)
+			{
+				return findCompany(name);
+			}
+
+			@Override
+			public String toString(Company company)
+			{
+				if (company == null || ResourceManager.getInstance().getText("fxml.text.view.all").equals(company.getName())) return ResourceManager.getInstance().getText("fxml.text.view.all");
+				return company.getName();
+			}
+		};
+		return converter;
+	}
 	public static StringConverter<User> getUserConverter(List<User> users) {
 		
 		StringConverter<User> converter = new StringConverter<User>()	{

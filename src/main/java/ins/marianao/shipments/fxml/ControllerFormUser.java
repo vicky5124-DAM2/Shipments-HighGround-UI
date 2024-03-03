@@ -7,6 +7,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import ins.marianao.shipments.fxml.services.ServiceQueryCompany;
+import ins.marianao.shipments.fxml.services.ServiceQueryOffice;
+import ins.marianao.shipments.fxml.services.ServiceQueryUsers;
+import javafx.collections.ObservableList;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import cat.institutmarianao.shipmentsws.model.Office;
@@ -234,14 +238,18 @@ public class ControllerFormUser implements Initializable, ChangeListener<Pair<St
             	User user = saveUser.getValue();
             	
             	if (user instanceof Courier) {
-            		
-            	} else { 
+					Courier courier = (Courier) user;
+					Company company = courier.getCompany();
+
+					if (company != null && !cmbCompany.getItems().contains(company)) {	// New Office
+						cmbCompany.getItems().add(company);
+					}
+            	} else {
 	            	Receptionist receptionist = (Receptionist) user;
 	            	Office office = receptionist.getOffice();
 	
 					if (office != null && !cmbOffice.getItems().contains(office)) {	// New Office
 						cmbOffice.getItems().add(office);
-						//cmbOffice.setConverter(Formatters.getRoomConverter(cmbOffice.getItems()));	
 					}
             	}
             	
@@ -274,13 +282,71 @@ public class ControllerFormUser implements Initializable, ChangeListener<Pair<St
 	}
 	
 	protected void loadOffices(ComboBox<Office> combo) {
-		// TODO query offices and set combo items
-		return;
+		final ServiceQueryOffice queryOffice = new ServiceQueryOffice();
+
+		queryOffice.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+			@Override
+			public void handle(WorkerStateEvent t) {
+				cmbOffice.setEditable(true);
+
+				cmbOffice.getItems().clear();
+
+				ObservableList<Office> offices = FXCollections.observableArrayList(queryOffice.getValue());
+
+				cmbOffice.setItems( offices );
+
+				cmbOffice.setConverter(Formatters.getOfficeConverter(offices));
+			}
+		});
+
+		queryOffice.setOnFailed(new EventHandler<WorkerStateEvent>() {
+			@Override
+			public void handle(WorkerStateEvent t) {
+				cmbOffice.setEditable(true);
+
+				Throwable e = t.getSource().getException();
+
+				ControllerMenu.showError(ResourceManager.getInstance().getText("error.viewUsers.web.service"), e.getMessage(), ExceptionUtils.getStackTrace(e));
+			}
+
+		});
+
+		queryOffice.start();
 	}
 	
 	protected void loadCompanies(ComboBox<Company> combo) {
-		// TODO query companies and set combo items
-		return;
+		final ServiceQueryCompany queryCompany = new ServiceQueryCompany();
+
+		queryCompany.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+			@Override
+			public void handle(WorkerStateEvent t) {
+				cmbCompany.setEditable(true);
+
+				cmbCompany.getItems().clear();
+
+				ObservableList<Company> companies = FXCollections.observableArrayList(queryCompany.getValue());
+
+				cmbCompany.setItems( companies );
+
+				cmbCompany.setConverter(Formatters.getCompanyConverter(companies));
+			}
+		});
+
+		queryCompany.setOnFailed(new EventHandler<WorkerStateEvent>() {
+			@Override
+			public void handle(WorkerStateEvent t) {
+				cmbCompany.setEditable(true);
+
+				Throwable e = t.getSource().getException();
+
+				ControllerMenu.showError(ResourceManager.getInstance().getText("error.viewUsers.web.service"), e.getMessage(), ExceptionUtils.getStackTrace(e));
+			}
+
+		});
+
+		queryCompany.start();
 	}
 }
 
